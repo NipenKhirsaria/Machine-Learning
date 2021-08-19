@@ -36,6 +36,8 @@ from tensorflow.keras.layers import Input, Dense, Flatten, Conv2D, MaxPool2D, Ba
 print('Check if we are using TensorFlow 2.4')
 print('Using TensorFlow version', tf.__version__)
 
+
+# 9 types of emojis
 emojis = {
     0: {'name': 'happy', 'file': '1F642.png'},
     1: {'name': 'laughing', 'file': '1F602.png'},
@@ -138,9 +140,9 @@ x = input_
 
 for i in range(0,5):
   n_filters = 2**(4+i)
-  x = Conv2D(n_filters,3,activation='relu')(x)
-  x = BatchNormalization()(x)
-  x = MaxPool2D(2)(x)
+  x = Conv2D(n_filters,3,activation='relu')(x)            # Convolution layer
+  x = BatchNormalization()(x)                             # Batch normalization la      
+  x = MaxPool2D(2)(x)                                     # Max pooling layer
 
 x = Flatten()(x)
 x = Dense(256,activation='relu')(x)
@@ -189,7 +191,7 @@ class IoU(tf.keras.metrics.Metric):
     iou = tf.math.divide(i_area,u_area)
     self.num_ex.assign_add(1)
     self.total_iou.assign_add(tf.reduce_mean(iou))
-    self.iou = tf.math.divide(self.total_iou,self.num_ex)
+    self.iou = tf.math.divide(self.total_iou,self.num_ex)              # iou - intersection over union
 
   def result(self):
     return self.iou
