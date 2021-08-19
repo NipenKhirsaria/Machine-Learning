@@ -91,7 +91,7 @@ model = tf.keras.models.Model(input_,[digit,color])
 
 model.compile(
     loss={
-        'digit':'sparse_categorical_crossentropy',                # what are these crossentropy loss functions ? 
+        'digit':'sparse_categorical_crossentropy',                 
         'color':'binary_crossentropy'
     },
     optimizer='adam',
